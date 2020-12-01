@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.card--background{
+    width: 100%;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+.color--overlay{
+    width: 100%;
+    border-radius: 10px;
+    
+}
+.color--overlay__compare{
+    border-radius: 10px;
+    border: 1px solid grey;
+}

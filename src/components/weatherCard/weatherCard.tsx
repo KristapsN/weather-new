@@ -30,7 +30,7 @@ const CompareCard = ({ temp, minTemp, maxTemp, weather, icon,
         <div className="secondary--forcast">
           <h2>Feels like {feelsLike}°</h2>
           <span>min {minTemp}° </span>
-          <span>max {maxTemp}° </span>
+          <span>max {maxTemp}°</span>
           <p>{description}</p>
           <button type="button" onClick={()=> compareHandler()}>Add to compare</button>
         </div>

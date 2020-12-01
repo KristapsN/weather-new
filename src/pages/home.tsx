@@ -146,7 +146,7 @@ const Home = () => {
           className="col-xs-offset-3 col-xs-6"
         >
           <TextInput
-            value={inputCity}
+            value={inputCity} 
             cityInputHandler={(e) => inputChangeHandler(e)}
             cityClickHandler={cityClickHandler}
           />

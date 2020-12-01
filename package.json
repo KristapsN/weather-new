@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "weather",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://kristapsn.github.io/weather/",
@@ -33,8 +33,6 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

@@ -9,11 +9,7 @@ import {
 } from 'react-router-dom';
 import Home from './pages/home';
 
-
-
-
 const App = () => {
-
   return (
     <div>
       <Router>
@@ -23,8 +19,6 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
-
-
     </div>
   );
 };

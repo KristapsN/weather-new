@@ -9,9 +9,9 @@ import TextInput from '../components/input/textInput';
 
 type Forcast = {
   temp: number | undefined;
-  feels_like: number;
-  temp_min: number;
-  temp_max: number;
+  feels_like: number | undefined;
+  temp_min: number | undefined;
+  temp_max: number | undefined;
 
 };
 type Weather = {

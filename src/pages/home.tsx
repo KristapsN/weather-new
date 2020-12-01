@@ -129,13 +129,13 @@ const Home = () => {
     tempImage = 115;
   } else if (weather?.main === 'Sunny') {
     tempImage = 206;
-  } else if (weather?.main === 'Cloud') {
-    tempImage = 353;
-  } else {
+  } else if (weather?.main === 'Clouds') {
     tempImage = 1056;
+  } else {
+    tempImage = 114;
   }
 
-  const background = `https://picsum.photos/id/${tempImage}/2000/1000/?blur=7`;
+  const background = `https://picsum.photos/id/${tempImage}/1000/350/?blur=7`;
   const iconWeather = `http://openweathermap.org/img/wn/${weather?.icon}@2x.png`;
 
 

@@ -1,0 +1,26 @@
+.form{
+    height: 20px;
+   
+}
+.form--button{
+    background-color: lightskyblue;
+    border-radius: 20px;
+    padding: 5px 10px;
+    border: 1px solid lightslategray;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.form--button:hover{
+    opacity: 0.7;
+    transition: 0.2s;
+}
+.form--wrapper{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.input{
+    height: 20px;
+    background-color: lightsteelblue;
+    border: 1px solid lightslategrey;
+
+}

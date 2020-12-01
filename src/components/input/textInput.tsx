@@ -1,4 +1,5 @@
 import React from 'react';
+import './input.css';
 
 type Props = {
   cityInputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -8,12 +9,14 @@ type Props = {
 
 const TextInput = ({ cityInputHandler, cityClickHandler, value }: Props) => {
   return (
-    <div>
+    <div className='form--wrapper'>
       <form 
+        className='from'
         action='submit'
         onSubmit={(e) => e.preventDefault()}
       >
         <input 
+          className='input'
           type="text"
           value={value}
           onChange={(e) => cityInputHandler(e)}
@@ -21,6 +24,7 @@ const TextInput = ({ cityInputHandler, cityClickHandler, value }: Props) => {
           
         />
         <button 
+          className='form--button'
           type="submit"
           onClick={() => cityClickHandler()}
           

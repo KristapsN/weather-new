@@ -1,5 +1,5 @@
 import React from 'react';
-import './weatherCard.css';
+import './styleCard.css';
 
 type Props = {
   temp: number | undefined;

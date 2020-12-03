@@ -11,6 +11,7 @@ body{
 .color--overlay{
     width: 100%;
     border-radius: 10px;
+    position: relative;
     
 }
 .color--overlay__compare{

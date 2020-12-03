@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import WeatherCard from '../components/weatherCard/weatherCard';
 import CompareCard from '../components/weatherCard/compareCard';
 import TextInput from '../components/input/textInput';
-
+import Error from '../components/weatherCard/errorCard';
 
 type Forcast = {
   temp: number | undefined;
@@ -35,6 +35,7 @@ type CityList = {
   id: string | undefined;
 };
 
+
 const Home = () => {
 
   const cityId = uuidv4();
@@ -48,6 +49,7 @@ const Home = () => {
   const [city, setCity] = useState('Riga');
   const [inputCity, setInputCity] = useState('');
   const [cityList, setCityList] = useState<CityList[]>([]);
+  const [errorInfo, setErrorInfo] = useState(false);
 
   const objectToApiUrl = (params: Object) => {
     return Object.entries(params).reduce((acc, [key, value]) => {
@@ -67,7 +69,13 @@ const Home = () => {
         console.log(response.data);
         setWeather(response.data.weather[0]);
         setForcast(response.data.main);
-      });
+        setErrorInfo(false);
+      })
+      .catch(() => {
+        console.log('Error!!!');
+        setErrorInfo(true);
+      }
+      );
 
   }, [city]);
 
@@ -80,13 +88,13 @@ const Home = () => {
   };
   const compareHandler = (idInfo: string, cityInfo: string) => {
 
-    const newCity = cityList.find(item => item.name === cityInfo && item.open === true);
+    const newCity = cityList.find(item => 
+      item.name === cityInfo && item.open === true);
 
     if (newCity) {
       console.log('Already exist');
 
     } else {
-      console.log('Add');
       setCityList([
         ...cityList,
         {
@@ -175,6 +183,11 @@ const Home = () => {
                 backgroundColor: `rgb(${tempColor})`,
               }}
             >
+              {errorInfo && 
+              <Error
+                errorTitle="Sorry, we did not found this city"
+                errorMesage="Please check if you have correct name of city."
+              />}
               <WeatherCard
                 city={city}
                 temp={forcast?.temp}

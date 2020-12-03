@@ -11,11 +11,13 @@ type Props = {
   description: string | undefined;
   city: string | undefined;
   closeHandler: () => void;
+  idInfo: string | undefined;
+ 
 
 };
 
 const WeatherCard = ({ temp, minTemp, maxTemp, weather, icon,
-  feelsLike, description, city, closeHandler }: Props) => {
+  feelsLike, description, city, closeHandler, idInfo}: Props) => {
   return (
     <div className="compare--wrapper__big">
       <h1 className="city--name">{city}</h1>

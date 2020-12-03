@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './pages.css';
 import 'flexboxgrid';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import WeatherCard from '../components/weatherCard/weatherCard';
 import CompareCard from '../components/weatherCard/compareCard';
 import TextInput from '../components/input/textInput';
@@ -31,10 +32,13 @@ type CityList = {
   temp_min: number | undefined;
   temp_max: number | undefined;
   color: string | undefined;
-
+  id: string | undefined;
 };
 
 const Home = () => {
+
+  const cityId = uuidv4();
+
   axios.defaults.params = {
     appid: '1d9b71f98edb0748224fcf68d948a166'
   };
@@ -74,30 +78,39 @@ const Home = () => {
     setCity(inputCity);
     setInputCity('');
   };
-  const compareHandler = () => {
-    setCityList([
-      ...cityList,
-      {
-        name: city,
-        open: true,
-        temp: forcast?.temp,
-        main: weather?.main,
-        description: weather?.description,
-        icon: weather?.icon,
-        feels_like: forcast?.feels_like,
-        temp_min: forcast?.temp_min,
-        temp_max: forcast?.temp_max,
-        color: tempColor 
-      }
-    ]);
+  const compareHandler = (idInfo: string, cityInfo: string) => {
+
+    const newCity = cityList.find(item => item.name === cityInfo && item.open === true);
+
+    if (newCity) {
+      console.log('Already exist');
+
+    } else {
+      console.log('Add');
+      setCityList([
+        ...cityList,
+        {
+          name: city,
+          open: true,
+          temp: forcast?.temp,
+          main: weather?.main,
+          description: weather?.description,
+          icon: weather?.icon,
+          feels_like: forcast?.feels_like,
+          temp_min: forcast?.temp_min,
+          temp_max: forcast?.temp_max,
+          color: tempColor,
+          id: idInfo
+        }
+      ]);
+    }
   };
+
   const closeHandler = (comp: string | undefined) => {
     cityList.map((item) => {
       const newCityList = [...cityList];
-      if (item.name === comp) {
-        // eslint-disable-next-line no-param-reassign
-        item.open = !item.open;
-      }
+      // eslint-disable-next-line no-param-reassign
+      item.id === comp && (item.open = !item.open);
       setCityList(newCityList);
     }
     );
@@ -143,10 +156,10 @@ const Home = () => {
     <div className='container'>
       <div className="row">
         <div
-          className="col-xs-offset-3 col-xs-6"
+          className="col-md-offset-3 col-md-6 col-xs-12"
         >
           <TextInput
-            value={inputCity} 
+            value={inputCity}
             cityInputHandler={(e) => inputChangeHandler(e)}
             cityClickHandler={cityClickHandler}
           />
@@ -171,7 +184,7 @@ const Home = () => {
                 icon={iconWeather}
                 feelsLike={forcast?.feels_like}
                 description={weather?.description}
-                compareHandler={() => compareHandler()}
+                compareHandler={() => compareHandler(cityId, city)}
               />
             </div>
           </div>
@@ -180,13 +193,14 @@ const Home = () => {
       <div className="row">
 
         {cityList.filter(item => item.open === true).map((item) =>
-          <div key='1' className="col-xs-3">
+          // eslint-disable-next-line react/jsx-key
+          <div className=" col-sm-6 col-xs-12 col-md-3">
             <div
               className="color--overlay__compare"
               style={{
                 backgroundColor: `rgb(${item.color})`,
               }}
-            > 
+            >
               <CompareCard
                 city={item.name}
                 temp={item.temp}
@@ -196,7 +210,8 @@ const Home = () => {
                 icon={`http://openweathermap.org/img/wn/${item.icon}@2x.png`}
                 feelsLike={item.feels_like}
                 description={item.description}
-                closeHandler={() => closeHandler(item.name)}
+                closeHandler={() => closeHandler(item.id)}
+                idInfo={item.id}
               />
             </div>
           </div>

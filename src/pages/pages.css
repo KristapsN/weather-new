@@ -16,4 +16,10 @@ body{
 .color--overlay__compare{
     border-radius: 10px;
     border: 1px solid grey;
+    margin-bottom: 20px;
 }
+@media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }

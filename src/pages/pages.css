@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
 body{
     font-family: 'Roboto', sans-serif;
+    background-color: lightblue;
 }
 .card--background{
     width: 100%;
@@ -19,8 +20,3 @@ body{
     border: 1px solid grey;
     margin-bottom: 20px;
 }
-@media only screen and (max-width: 600px) {
-    body {
-      background-color: lightblue;
-    }
-  }
